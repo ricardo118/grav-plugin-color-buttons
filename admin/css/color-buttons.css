@@ -1,0 +1,94 @@
+
+/* Radio Images */
+.block-radioimage .form-field.vertical .form-label, .radioimage-selector input[type="radio"] {
+    display: none;
+}
+.radioimage-selector {
+    padding: 0 0 2em 0;
+    max-width: 1000px;
+}
+.radioimage-selector input[type="radio"]:checked + .card-radioimage::after {
+    content: '\2713';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    line-height: 2;
+    font-size: 3em;
+    z-index: 3;
+    text-align: center;
+    color: green;
+    outline: 2px solid green;
+}
+.card-radioimage {
+    cursor: pointer;
+    z-index: 5;
+    position: relative;
+    padding:0;
+}
+.radioimage-selector:hover .card-radioimage {
+    outline: 2px solid black;
+}
+.card-radioimage h5 {
+    margin : 0 0 0 10px;
+}
+
+
+.row::after {
+    clear: both;
+}
+.row::before, .row::after {
+    content: " ";
+    display: table;
+}
+.show-sm {
+    display: block !important;
+    max-width: 1000px;
+    position: relative;
+}
+.color-group {
+    width: 5%;
+    float: left;
+    display: block;
+}
+.color-block {
+     display: block;
+     position: relative;
+     width: 100%;
+     padding-bottom: 100%;
+ }
+.color-block div {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+/* COLOR ARRAY CSS */
+form [data-grav-field="colorarray"] input[type="text"], .g-colorpicker-array {
+    width: 40%;
+    float: left;
+    margin: 0 5px 5px 0;
+}
+form .g-colorpicker-array {
+    width:40% !important;
+}
+form [data-grav-field="colorarray"] {
+    display: inline-block;
+    width: 100%;
+}
+form [data-grav-field="colorarray"] .form-row span[data-grav-array-action="sort"] {
+    float: left;
+    cursor: move;
+}
+form [data-grav-field="colorarray"] .form-row {
+    display: inline-block;
+    width: 100%;
+}
+form [data-grav-field="colorarray"] .form-row span {
+    padding: 0.5rem;
+    display: inline-block;
+    line-height: 1.7;
+    cursor: pointer;
+}

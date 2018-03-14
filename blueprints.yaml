@@ -1,0 +1,66 @@
+name: Color Buttons
+version: 1.2.1
+description: Adds additional editor button options to add custom colors or palettes
+icon: edit
+author:
+  name: URBANSQUID
+  email: ricardo@urbansquid.london
+  url: http://urbansquid.london
+homepage: https://github.com/ricardo118/grav-plugin-color-buttons
+keywords: admin, plugin, editor, buttons, color, classes
+bugs: https://github.com/getgrav/grav-plugin-color-buttons/issues
+license: MIT
+
+dependencies:
+  - { name: admin, version: '~1.1' }
+
+form:
+  validation: loose
+  fields:
+    enabled:
+      type: toggle
+      label: PLUGIN_ADMIN.PLUGIN_STATUS
+      highlight: 1
+      default: 0
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+    header:
+      type: section
+      title: Style
+      underline: false
+      text: 'Select one of the common web palettes or select custom to enable custom colors'
+      fields:
+        current:
+          type: radioimage
+          classes: fancy
+          name: current
+          style: vertical
+          default: grav
+          options:
+            flat_design: Flat UI
+            material_design: Material Design
+            web_safe: Web Safe Colors
+            custom: Custom
+    custom_section:
+      type: section
+      title: Custom Palette
+      underline: false
+      text: 'Create a custom Palette'
+      fields:
+        cpicker:
+          type: colorpicker
+        custom:
+           type: colorarray
+           label: Palette
+           placeholder_key: Class
+           placeholder_value: Color
+           required: true
+        custom2:
+           type: array
+           label: Palette
+           placeholder_key: Class
+           placeholder_value: Color
+           required: true

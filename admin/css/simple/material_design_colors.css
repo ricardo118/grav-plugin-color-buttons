@@ -1,0 +1,101 @@
+/*  Material Design color palette downloaded from
+ *  http://htmlcolorcodes.com/color-charts/
+ *
+ *  Check out our powerful color picker
+ *  http://htmlcolorcodes.com/color-picker/
+ *
+ *  Want to learn more about colors in CSS?
+ *  http://htmlcolorcodes.com/tutorials/
+ *
+ *  - - - - - - - - - - - - - - - - - - 
+ *  Credits:
+ *
+ *  Original color palette by
+ *  https://www.google.com/design/spec/style/color.html
+ *
+ *  - - - - - - - - - - - - - - - - - -
+ *  How to use:
+ *  
+ *  Include this file with your stylesheets
+ *  in the <head> of your HTML file:
+ *
+ *  <head>
+ *    ...
+ *    <link href="path/to/css/material_colors.css" rel="stylesheet">
+ *    ...
+ *  </head>
+ *  
+ *  and in the body of your HTML you can style
+ *  any element using a class:
+ *	
+ *	<body>
+ *		...
+ *  	<h1 class="red">Your Colored Title</h1>
+ *    ...
+ *  </body>
+ */
+
+/* Red */
+.red { color: #f44336; }
+
+/* Pink */
+.pink { color: #e91e63; }
+
+/* Purple */
+.purple { color: #9c27b0; }
+
+/* Deep Purple */
+.deep-purple { color: #673ab7; }
+
+/* Indigo */
+.indigo { color: #3f51b5; }
+
+/* Blue */
+.blue { color: #2196f3; }
+
+/* Light Blue */
+.light-blue { color: #03a9f4; }
+
+/* Cyan */
+.cyan { color: #00bcd4; }
+
+/* Teal */
+.teal { color: #009688; }
+
+/* Green */
+.green { color: #4caf50; }
+
+/* Light Green */
+.light-green { color: #8bc34a; }
+
+/* Lime */
+.lime { color: #cddc39; }
+
+/* Yellow */
+.yellow { color: #ffeb3b; }
+
+/* Amber */
+.amber { color: #ffc107; }
+
+/* Orange */
+.orange { color: #ff9800; }
+
+/* Deep Orange */
+.deep-orange { color: #ff5722; }
+
+/* Brown */
+.brown { color: #795548; }
+
+/* Grey */
+.grey { color: #9e9e9e; }
+
+/* Blue Grey */
+.blue-grey { color: #607d8b; }
+
+/* White / Black */
+.white { color: #ffffff; }
+.black { color: #000000; }
+
+/*  Want more? Get the full Material Design color palette at
+ *  http://htmlcolorcodes.com/color-charts/
+ */

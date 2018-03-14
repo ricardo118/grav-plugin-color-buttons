@@ -1,0 +1,26 @@
+{% extends "forms/field.html.twig" %}
+
+{% set value = (value is null ? field.default : value) %}
+{% set value = (value is same as(false) ? 0 : value) %}
+
+{% block input %}
+    {% for key, text in field.options %}
+        {% set id = field.id|default(field.name) ~ '-' ~ key %}
+        <span class="radio">
+            <div class="radioimage-selector">
+                <input type="radio"
+                    value="{{ key|e }}"
+                    id="{{ id|e }}"
+                    name="{{ (scope ~ field.name)|fieldName }}"
+                    {% if key == value %}checked="checked" {% endif %}
+                    {% if field.disabled or isDisabledToggleable %}disabled="disabled"{% endif %}
+                    {% if field.validate.required in ['on', 'true', 1] %}required="required"{% endif %}
+                />
+                <label class="card-radioimage {{ key|e }} {% if key == value %}active{% endif %}" for="{{ id|e }}">
+                    {% include "partials/#{key}_chart.html.twig" ignore missing %}
+                    <h5>{{ text|e }}{% if key == value %} - Active{% endif %}</h5>
+                </label>
+          </div>
+        </span>
+    {% endfor %}
+{% endblock %}
