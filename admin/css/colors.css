@@ -1,0 +1,84 @@
+#color-chooser{
+    position: absolute;
+    max-width: 500px;
+    z-index: 10;
+    left: 3.1rem;
+    width: 70%;
+    border: 1px solid grey;
+}
+#color-chooser .js-color.highlight {
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    -ms-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2);
+    z-index:5;
+    border: 1px solid black;
+}
+.material-design .color-group{
+    width: 5.26315%;
+}
+.web-safe .color-group {
+    width: 5.55555556%;
+}
+#custom-chooser {
+    position: absolute;
+    left: 0;
+    border: none !important;
+    box-shadow: none !important;
+    z-index: 5;
+    max-width:300px;
+    line-height:0;
+}
+.grav-editor-button-colors {
+    position:relative;
+}
+#custom-chooser .custom-color-btn.highlight {
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    -ms-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2);
+    z-index:6;
+    border: 1px solid black !important;
+}
+#custom-chooser .grav-editor-button-color {
+    width:30px;
+}
+
+#custom-chooser .custom-color-btn {
+    width:30px;
+    height:30px;
+    border-radius: 0 !important;
+}
+
+.row::after {
+    clear: both;
+}
+.row::before, .row::after {
+    content: " ";
+    display: table;
+}
+.show-sm {
+    display: block !important;
+    max-width: 1000px;
+    position: relative;
+}
+.color-group {
+    width: 5%;
+    float: left;
+    display: block;
+}
+.color-block {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+}
+.color-block div {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+

@@ -29,10 +29,18 @@ form:
         type: bool
     header:
       type: section
-      title: Style
+      title: Default Palettes
       underline: false
       text: 'Select one of the common web palettes or select custom to enable custom colors'
       fields:
+        mode:
+          type: toggle
+          label: Number of Colours
+          highlight: extended
+          default: extended
+          options:
+            extended: Extended
+            simple: Abridged
         current:
           type: radioimage
           classes: fancy
@@ -50,17 +58,12 @@ form:
       underline: false
       text: 'Create a custom Palette'
       fields:
-        cpicker:
-          type: colorpicker
         custom:
            type: colorarray
            label: Palette
-           placeholder_key: Class
+           placeholder_key: class-name
            placeholder_value: Color
            required: true
-        custom2:
-           type: array
-           label: Palette
-           placeholder_key: Class
-           placeholder_value: Color
-           required: true
+           validate:
+            type: array
+            message: "Class name cannot include spaces. Only dashes and underscores"

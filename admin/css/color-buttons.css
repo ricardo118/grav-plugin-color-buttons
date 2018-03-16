@@ -34,38 +34,10 @@
     margin : 0 0 0 10px;
 }
 
-
-.row::after {
-    clear: both;
+/* COLOR PICKER ARRAY CSS */
+.g-colorpicker .g-colorpicker-preview-wrap {
+    border:none !important;
 }
-.row::before, .row::after {
-    content: " ";
-    display: table;
-}
-.show-sm {
-    display: block !important;
-    max-width: 1000px;
-    position: relative;
-}
-.color-group {
-    width: 5%;
-    float: left;
-    display: block;
-}
-.color-block {
-     display: block;
-     position: relative;
-     width: 100%;
-     padding-bottom: 100%;
- }
-.color-block div {
-    position: absolute;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-}
-
-/* COLOR ARRAY CSS */
 form [data-grav-field="colorarray"] input[type="text"], .g-colorpicker-array {
     width: 40%;
     float: left;

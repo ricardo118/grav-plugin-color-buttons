@@ -1,5 +1,5 @@
 {% extends "forms/field.html.twig" %}
-
+{% set pattern = '^#([a-fA-F0-9]{6})|(rgba\\(\\s*(0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5])\\s*,\\s*(0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5])\\s*,\\s*(0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5])\\s*,\\s*((0.[0-9]+)|(1.00)|1.0|1)\\s*\\))$' %}
 {% block global_attributes %}
 
     data-grav-field="array"
@@ -9,12 +9,11 @@
     {{ parent() }}
 {% endblock %}
 
-{% macro renderer(key, text, field, scope) %}
+{% macro renderer(key, text, field, scope, pattern) %}
 
     {% if text is not iterable %}
     <div class="form-row{% if field.value_only %} array-field-value_only{% endif %}"
          data-grav-array-type="row">
-        <span data-grav-array-action="sort" class="fa fa-bars"></span>
         {% if field.value_only != true %}
             {% if key == '0' and text == '' %}
                 {% set key = '' %}
@@ -23,6 +22,8 @@
             <input
                 data-grav-array-type="key"
                 type="text" value="{{ key }}"
+                pattern="^[-a-zA-Z0-9-_]+$"
+                {% if field.validate.message %}title="{{ field.validate.message|t|e }}"{% endif %}
                 {% if field.disabled or isDisabledToggleable %}disabled="disabled"{% endif %}
                 placeholder="{{ field.placeholder_key|e|tu }}" />
         {% endif %}
@@ -30,17 +31,33 @@
             <input
                     data-grav-array-type="value"
                     data-grav-colorpicker="{{ {update: '.g-colorpicker-preview-wrap .g-colorpicker-preview'}|json_encode|e('html_attr') }}"
-                    pattern="^#([a-fA-F0-9]{6})|(rgba\\(\\s*(0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5])\\s*,\\s*(0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5])\\s*,\\s*(0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5])\\s*,\\s*((0.[0-9]+)|(1.00)|1.0|1)\\s*\\))$"
+                    pattern="{{ pattern|raw }}"
                     type="text"
+                    value={% if text == 'true' %}true{% elseif text == 'false' %}false{% else %}"{{ text|join(', ')|e }}"{% endif %}
                     name="{{ ((scope ~ field.name)|fieldName) ~ '[' ~ key ~ ']' }}"
                     {% if field.disabled or isDisabledToggleable %}disabled="disabled"{% endif %}
-                    placeholder="{{ field.placeholder_value|e|tu }}" />
+                    placeholder="{{ field.placeholder_value|e|tu }}"
+                    {% block input_attributes %}
+                        {% if field.classes is defined %}class="{{ field.classes }}" {% endif %}
+                        {% if field.id is defined %}id="{{ field.id|e }}" {% endif %}
+                        {% if field.style is defined %}style="{{ field.style|e }}" {% endif %}
+                        {% if field.disabled %}disabled="disabled"{% endif %}
+                        {% if field.placeholder %}placeholder="{{ field.placeholder }}"{% endif %}
+                        {% if field.autofocus in ['on', 'true', 1] %}autofocus="autofocus"{% endif %}
+                        {% if field.novalidate in ['on', 'true', 1] %}novalidate="novalidate"{% endif %}
+                        {% if field.readonly in ['on', 'true', 1] %}readonly="readonly"{% endif %}
+                        {% if field.autocomplete in ['on', 'off'] %}autocomplete="{{ field.autocomplete }}"{% endif %}
+                        {% if field.validate.required in ['on', 'true', 1] %}required="required"{% endif %}
+                        {% if field.validate.message %}title="{{ field.validate.message|e|t }}"
+                        {% elseif field.title is defined %}title="{{ field.title|e|t }}" {% endif %}
+                    {% endblock %}
+            />
             <div class="g-colorpicker-preview-wrap">
-                <div class="g-colorpicker-preview" style="background-color: {{ value|e }}"></div>
+                <div class="g-colorpicker-preview" style="background-color: {{ text|e }}"></div>
             </div>
         </div>
-        <span data-grav-array-action="rem" class="fa fa-minus"></span>
-        <span data-grav-array-action="add" class="fa fa-plus"></span>
+        <span data-grav-colorarray-action="rem" class="fa fa-minus"></span>
+        <span data-grav-colorarray-action="add" class="fa fa-plus"></span>
     </div>
     {% endif %}
 {% endmacro %}
@@ -51,18 +68,17 @@
         {% if value|length %}
             {% for key, text in value -%}
                 {% if text is not iterable %}
-                    {{ array_field.renderer(key, text, field, scope) }}
+                    {{ array_field.renderer(key, text, field, scope, pattern) }}
                 {% else %}
                     {# Backward compatibility for nested arrays (metas) which are not supported anymore #}
                     {% for subkey, subtext in text -%}
-                        {{ array_field.renderer(key ~ '[' ~ subkey ~ ']', subtext, field, scope) }}
+                        {{ array_field.renderer(key ~ '[' ~ subkey ~ ']', subtext, field, scope, pattern) }}
                     {% endfor %}
                 {% endif %}
             {% endfor %}
         {%- else -%}
             {# Empty value, mock the entry field#}
             <div class="form-row" data-grav-array-type="row">
-                <span data-grav-array-action="sort" class="fa fa-bars"></span>
                 {% if field.value_only != true %}
                 <input
                     data-grav-array-type="key"
@@ -70,14 +86,21 @@
                     {% if field.disabled or isDisabledToggleable %}disabled="disabled"{% endif %}
                     placeholder="{{ field.placeholder_key|e|tu }}" />
                 {% endif %}
-                <input
-                    data-grav-array-type="value"
-                    type="text"
-                    name="{{ (scope ~ field.name)|fieldName }}"
-                    {% if field.disabled or isDisabledToggleable %}disabled="disabled"{% endif %}
-                    placeholder="{{ field.placeholder_value|e|tu }}" />
-                <span data-grav-array-action="rem" class="fa fa-minus"></span>
-                <span data-grav-array-action="add" class="fa fa-plus"></span>
+                <div class="g-colorpicker g-colorpicker-array">
+                    <input
+                            data-grav-array-type="value"
+                            data-grav-colorpicker="{{ {update: '.g-colorpicker-preview-wrap .g-colorpicker-preview'}|json_encode|e('html_attr') }}"
+                            pattern="{{ pattern|raw }}"
+                            type="text"
+                            name="{{ ((scope ~ field.name)|fieldName) ~ '[' ~ key ~ ']' }}"
+                            {% if field.disabled or isDisabledToggleable %}disabled="disabled"{% endif %}
+                            placeholder="{{ field.placeholder_value|e|tu }}" />
+                    <div class="g-colorpicker-preview-wrap">
+                        <div class="g-colorpicker-preview" style="background-color: {{ value|e }}"></div>
+                    </div>
+                </div>
+                <span data-grav-colorarray-action="rem" class="fa fa-minus"></span>
+                <span data-grav-colorarray-action="add" class="fa fa-plus"></span>
             </div>
         {%- endif %}
     </div>
