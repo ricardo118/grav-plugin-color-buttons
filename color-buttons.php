@@ -116,7 +116,7 @@ class ColorButtonsPlugin extends Plugin
                 if ($this->isAdmin()) {$assets->addJs('user/plugins/color-buttons/admin/js/custom_colors.js', 9);}
                 break;
             default:
-                $assets->addCss('user/plugins/color-buttons/admin/css/'. $this->isExtended() .'/'. $config['current'] .'.css', 100);
+                $assets->addCss('user/plugins/color-buttons/admin/css/'. $this->isExtended() .'/'. $config['current'] .'.css', 1);
                 if ($this->isAdmin()) {$assets->addJs('user/plugins/color-buttons/admin/js/'. $this->isExtended() .'/'. $config['current'] .'.js', 9);}
                 break;
         }
