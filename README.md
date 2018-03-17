@@ -42,7 +42,7 @@
  
  ```yaml
  
-     pages
+     pages:
        markdown:
          extra: false
  
