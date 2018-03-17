@@ -36,8 +36,19 @@
                             var $this = $(this);
 
                             $('#custom-chooser').remove();
-
-                            Instance.buttonStrategies.replaceLine({ token: '$1', template: '$1 {.'+$this.data('class')+'}', codemirror: codemirror });
+                            if (window.ColorButtonsPlugin.useShortcode) {
+                                Instance.buttonStrategies.replaceLine({
+                                    token: '$1',
+                                    template: `[cb color=${$this.data("class")}] $1[/cb]`,
+                                    codemirror: codemirror
+                                });
+                            } else {
+                                Instance.buttonStrategies.replaceLine({
+                                    token: '$1',
+                                    template: '$1 {.' + $this.data('class') + '}',
+                                    codemirror: codemirror
+                                });
+                            }
                             button.trigger('click.editor.colors');
                             codemirror.focus();
                         });
