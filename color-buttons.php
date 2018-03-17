@@ -19,6 +19,7 @@ class ColorButtonsPlugin extends Plugin
     {
         return [
             'onPluginsInitialized' => ['onPluginsInitialized', 0],
+            'onShortcodeHandlers' => ['onShortcodeHandlers', 0],
             'onPagesInitialized' => ['colorButtonsEndpoint', 0],
             'onAssetsInitialized' => ['onAssetsInitialized', 0]
         ];
@@ -33,6 +34,23 @@ class ColorButtonsPlugin extends Plugin
             return;
         }
         return $config;
+    }
+
+    public function useShortCode()
+    {
+        $plugins = $this->grav['plugins'];
+        $config = $this->config();
+
+        if ($config['parser'] === 'shortcode') {
+            if (is_null($plugins->get('shortcode-core'))) {
+                return $this->grav['admin']->setMessage('Shortcode Core Plugin is not installed. Install or change parser to Markdown Extra.');
+            }
+            if (!$this->config->get('plugins')['shortcode-core']['enabled']){
+                return $this->grav['admin']->setMessage('Shortcode Core Plugin is not enabled. Enable or change parser to Markdown Extra.');
+            }
+            return 'true';
+        }
+        return 'false';
     }
 
     public function isExtended()
@@ -91,6 +109,14 @@ class ColorButtonsPlugin extends Plugin
             'onAdminTwigTemplatePaths' => ['onAdminTwigTemplatePaths', 0]
         ]);
 
+        $this->useShortCode();
+    }
+
+    public function onShortcodeHandlers()
+    {
+        if ($this->useShortCode() === 'true') {
+            $this->grav['shortcode']->registerAllShortcodes(__DIR__ . '/shortcodes');
+        }
     }
 
     public function onAdminTwigTemplatePaths($event)
@@ -109,6 +135,7 @@ class ColorButtonsPlugin extends Plugin
          *  STYLESHEETS - LOADS EVERYWHERE IN ADMIN */
         if ($this->isAdmin()) {
             $assets->addCss('user/plugins/color-buttons/admin/css/colors.css', 10);
+            $assets->addInlineJs('window.ColorButtonsPlugin = window.ColorButtonsPlugin || {};window.ColorButtonsPlugin.useShortcode = '.$this->useShortCode().';', 10);
         }
         switch($config['current']){
             case 'custom':
@@ -127,7 +154,7 @@ class ColorButtonsPlugin extends Plugin
          *  FOR COLORPICKER ARRAY AND RADIO PALETTES - ONLY LOADS IN PLUGIN CONFIGURATION PAge */
         if (strpos($this->grav['uri']->path(), $this->pluginRoute) !== false) {
             $assets->addJs('user/plugins/color-buttons/admin/js/colorarray.js', ['loading' => 'defer', 'priority' => 0]);
-            $assets->addCss('user/plugins/color-buttons/admin/css/color-buttons.css', 10);
+            $assets->addCss('user/plugins/color-buttons/admin/css/colorarray.css', 10);
         }
     }
 

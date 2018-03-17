@@ -27,6 +27,17 @@ form:
         0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
+    parser:
+      type: toggle
+      label: Parser
+      highlight: shortcode
+      default: markdown
+      options:
+        shortcode: Shortcodes
+        markdown: Markdown Extra
+    spacer:
+      type: spacer
+      text: '<strong>Shortcodes Parser</strong> requires <a href="/admin/plugins/shortcode-core">Shortcode Core Plugin</a>. By default the plugin uses Markdown Extra, however Shortcodes is recommended, so you have the option to change here.'
     header:
       type: section
       title: Default Palettes

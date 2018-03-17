@@ -1,3 +1,4 @@
 enabled: true
 current: flat_design
 mode: simple
+parser: markdown
