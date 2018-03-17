@@ -127,7 +127,7 @@ class ColorButtonsPlugin extends Plugin
          *  FOR COLORPICKER ARRAY AND RADIO PALETTES - ONLY LOADS IN PLUGIN CONFIGURATION PAge */
         if (strpos($this->grav['uri']->path(), $this->pluginRoute) !== false) {
             $assets->addJs('user/plugins/color-buttons/admin/js/colorarray.js', ['loading' => 'defer', 'priority' => 0]);
-            $assets->addCss('user/plugins/color-buttons/admin/css/color-buttons.css', 10);
+            $assets->addCss('user/plugins/color-buttons/admin/css/colorarray.css', 10);
         }
     }
 
