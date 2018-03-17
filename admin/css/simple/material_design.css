@@ -14,87 +14,68 @@
  *  https://www.google.com/design/spec/style/color.html
  *
  *  - - - - - - - - - - - - - - - - - -
- *  How to use:
- *  
- *  Include this file with your stylesheets
- *  in the <head> of your HTML file:
- *
- *  <head>
- *    ...
- *    <link href="path/to/css/material_colors.css" rel="stylesheet">
- *    ...
- *  </head>
- *  
- *  and in the body of your HTML you can style
- *  any element using a class:
- *	
- *	<body>
- *		...
- *  	<h1 class="red">Your Colored Title</h1>
- *    ...
- *  </body>
  */
 
 /* Red */
-.red { color: #f44336; }
+.red { color: #f44336 !important; }
 
 /* Pink */
-.pink { color: #e91e63; }
+.pink { color: #e91e63 !important; }
 
 /* Purple */
-.purple { color: #9c27b0; }
+.purple { color: #9c27b0 !important; }
 
 /* Deep Purple */
-.deep-purple { color: #673ab7; }
+.deep-purple { color: #673ab7 !important; }
 
 /* Indigo */
-.indigo { color: #3f51b5; }
+.indigo { color: #3f51b5 !important; }
 
 /* Blue */
-.blue { color: #2196f3; }
+.blue { color: #2196f3 !important; }
 
 /* Light Blue */
-.light-blue { color: #03a9f4; }
+.light-blue { color: #03a9f4 !important; }
 
 /* Cyan */
-.cyan { color: #00bcd4; }
+.cyan { color: #00bcd4 !important; }
 
 /* Teal */
-.teal { color: #009688; }
+.teal { color: #009688 !important; }
 
 /* Green */
-.green { color: #4caf50; }
+.green { color: #4caf50 !important; }
 
 /* Light Green */
-.light-green { color: #8bc34a; }
+.light-green { color: #8bc34a !important; }
 
 /* Lime */
-.lime { color: #cddc39; }
+.lime { color: #cddc39 !important; }
 
 /* Yellow */
-.yellow { color: #ffeb3b; }
+.yellow { color: #ffeb3b !important; }
 
 /* Amber */
-.amber { color: #ffc107; }
+.amber { color: #ffc107 !important; }
 
 /* Orange */
-.orange { color: #ff9800; }
+.orange { color: #ff9800 !important; }
 
 /* Deep Orange */
-.deep-orange { color: #ff5722; }
+.deep-orange { color: #ff5722 !important; }
 
 /* Brown */
-.brown { color: #795548; }
+.brown { color: #795548 !important; }
 
 /* Grey */
-.grey { color: #9e9e9e; }
+.grey { color: #9e9e9e !important; }
 
 /* Blue Grey */
-.blue-grey { color: #607d8b; }
+.blue-grey { color: #607d8b !important; }
 
 /* White / Black */
-.white { color: #ffffff; }
-.black { color: #000000; }
+.white { color: #ffffff !important; }
+.black { color: #000000 !important; }
 
 /*  Want more? Get the full Material Design color palette at
  *  http://htmlcolorcodes.com/color-charts/
