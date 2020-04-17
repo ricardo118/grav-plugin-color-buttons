@@ -37,11 +37,19 @@
 
                             $('#custom-chooser').remove();
                             if (window.ColorButtonsPlugin.useShortcode) {
-                                Instance.buttonStrategies.replaceLine({
-                                    token: '$1',
-                                    template: `[cb color=${$this.data("class")}] $1[/cb]`,
-                                    codemirror: codemirror
-                                });
+                                if (codemirror.getSelection() !== '') {
+                                    Instance.buttonStrategies.replaceSelections({
+                                        token: '$1',
+                                        template: `[cb color=${$this.data("class")}] $1[/cb]`,
+                                        codemirror: codemirror
+                                    });
+                                } else {
+                                    Instance.buttonStrategies.replaceLine({
+                                        token: '$1',
+                                        template: `[cb color=${$this.data("class")}] $1[/cb]`,
+                                        codemirror: codemirror
+                                    });
+                                }
                             } else {
                                 Instance.buttonStrategies.replaceLine({
                                     token: '$1',
