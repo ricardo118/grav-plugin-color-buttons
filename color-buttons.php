@@ -27,13 +27,7 @@ class ColorButtonsPlugin extends Plugin
 
     public function config()
     {
-        $pluginsobject = (array) $this->config->get('plugins');
-        if (isset($pluginsobject) && $pluginsobject['color-buttons']['enabled']) {
-            $config = $pluginsobject['color-buttons'];
-        } else {
-            return;
-        }
-        return $config;
+        return $this->config->get('plugins.color-buttons');
     }
 
     public function useShortCode()

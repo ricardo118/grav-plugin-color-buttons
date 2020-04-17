@@ -1,14 +1,14 @@
 name: Color Buttons
-version: 1.0.0
+version: 1.0.1
 description: Adds additional editor button options to add custom colors or palettes
 icon: edit
 author:
   name: URBANSQUID
   email: ricardo@urbansquid.london
   url: http://urbansquid.london
-homepage: https://github.com/ricardo118/grav-plugin-colorbuttons
+homepage: https://github.com/ricardo118/grav-plugin-color-buttons
 keywords: admin, plugin, editor, buttons, color, classes
-bugs: https://github.com/getgrav/grav-plugin-colorbuttons/issues
+bugs: https://github.com/getgrav/grav-plugin-color-buttons/issues
 license: MIT
 
 dependencies:
